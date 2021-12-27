@@ -1,0 +1,64 @@
+---
+- name: Setup Arch System
+  hosts: all
+  become: yes
+  tasks: 
+    - name: Sync with repos
+      community.general.pacman:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Install package neovim
+      community.general.pacman:
+        name: neovim
+        state: present
+
+    - name: Install package git
+      community.general.pacman:
+        name: git 
+        state: present
+
+    - name: Install package go
+      community.general.pacman:
+        name: go 
+        state: present
+
+    - name: Install package go-tools
+      community.general.pacman:
+        name: go-tools
+        state: present
+
+    - name: Install package ripgrep
+      community.general.pacman:
+        name: ripgrep 
+        state: present
+
+    - name: Install package fzf
+      community.general.pacman:
+        name: fzf 
+        state: present
+
+    - name: Install package sudo
+      community.general.pacman:
+        name: sudo 
+        state: present
+
+    - name: Install package zsh
+      community.general.pacman:
+        name: zsh 
+        state: present
+
+    - name: Install package man
+      community.general.pacman:
+        name: man
+        state: present
+
+    - name: Install nvim python
+      community.general.pacman:
+        name: python-pynvim
+        state: present
+
+
+
+
+

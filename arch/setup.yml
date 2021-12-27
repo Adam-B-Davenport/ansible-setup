@@ -1,0 +1,6 @@
+---
+- name: Setup Arch System
+  become: yes
+  tasks: 
+  - name: Ensure ntp is running
+    service: name=ntpd state=started enabled=yes
