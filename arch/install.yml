@@ -58,6 +58,12 @@
         name: python-pynvim
         state: present
 
+    - name: Install zsh syntax highlighting
+      community.general.pacman:
+        name: zsh-syntax-highlighting
+        state: present
+
+
 
 
 
