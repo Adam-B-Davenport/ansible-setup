@@ -20,11 +20,17 @@
         dest: ~/.config/nvim
         state: link
 
-    - name: Get vim plug
-      command: "sh -c 'curl -fLo \"${XDG_DATA_HOME:-$HOME/.local/share}\"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'"
+    - name: Check for vim plug
+      ansible.builtin.stat:
+        path: ~/.local/share/nvim/site/autoload/plug.vim
+      register: plug
 
-    - name: Vim Plugin Update
-      command: "nvim --headless +PlugInstall +qall"
+    - name: Get vim plug
+      command: "sh -c 'curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'"
+      when: not plug.stat.exists
+
+    - name: Vim Plugin Install
+      command: "nvim --headless +PlugUpdate +qall"
 
     - name: Link zsh
       ansible.builtin.file:
