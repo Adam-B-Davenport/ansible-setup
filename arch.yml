@@ -1,3 +1,4 @@
 ---
   - import_playbook: arch/install.yml
+  - import_playbook: common/dotfiles.yml
 

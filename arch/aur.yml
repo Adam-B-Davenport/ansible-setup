@@ -1,0 +1,17 @@
+---
+
+- name: Setup AUR and AUR packages
+  hosts: all
+  tasks: 
+
+    - name: Sync with repos
+      community.general.pacman:
+        executable: yay
+        update_cache: yes
+        upgrade: yes
+
+    - name: Install jellyfin
+      community.general.pacman:
+        executable: yay
+        name: jellyfin-bin
+        state: present

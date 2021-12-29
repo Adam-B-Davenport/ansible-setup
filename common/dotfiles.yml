@@ -2,6 +2,7 @@
 - name: Setup dotfiles and other basic config
   hosts: all
   tasks:
+
     - name: Pull dotfiles from git
       ansible.builtin.git:
         repo: 'https://gitlab.com/adavenport/dotfiles.git'
@@ -20,6 +21,18 @@
         dest: ~/.config/nvim
         state: link
 
+    - name: Link tmux
+      ansible.builtin.file:
+        src: ~/dotfiles/.
+        dest: ~/.config/nvim
+        state: link
+
+    - name: Link zsh
+      ansible.builtin.file:
+        src: ~/dotfiles/.zshrc
+        dest: ~/.zshrc
+        state: link
+
     - name: Check for vim plug
       ansible.builtin.stat:
         path: ~/.local/share/nvim/site/autoload/plug.vim
@@ -31,12 +44,6 @@
 
     - name: Vim Plugin Install
       command: "nvim --headless +PlugUpdate +qall"
-
-    - name: Link zsh
-      ansible.builtin.file:
-        src: ~/dotfiles/.zshrc
-        dest: ~/.zshrc
-        state: link
 
     - name: Change to zsh
       become: yes

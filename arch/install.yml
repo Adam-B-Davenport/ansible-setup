@@ -63,8 +63,17 @@
         name: zsh-syntax-highlighting
         state: present
 
+    - name: Install base-devel
+      community.general.pacman:
+        name: zsh-syntax-highlighting
+        state: present
 
+    - name: Install base-devel
+      community.general.pacman:
+        name: base-devel
+        state: present
 
-
-
-
+    - name: Install tmux
+      community.general.pacman:
+        name: tmux
+        state: present
