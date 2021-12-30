@@ -23,8 +23,8 @@
 
     - name: Link tmux
       ansible.builtin.file:
-        src: ~/dotfiles/.
-        dest: ~/.config/nvim
+        src: ~/dotfiles/.tmux.conf
+        dest: ~/.tmux.conf
         state: link
 
     - name: Link zsh
