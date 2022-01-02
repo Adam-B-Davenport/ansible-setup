@@ -1,0 +1,12 @@
+---
+
+- hosts: pi
+  become: yes
+  vars_files:
+    - vars/default.yml
+    - vars/secrets.yml
+  roles: 
+    - role: containers/deluge
+      tags: 
+        - deluge
+        - containers

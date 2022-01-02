@@ -77,3 +77,13 @@
       community.general.pacman:
         name: tmux
         state: present
+
+    - name: Install docker
+      community.general.pacman:
+        name: docker
+        state: present
+
+    - name: Install pip
+      community.general.pacman:
+        name: python-pip
+        state: present

@@ -1,0 +1,10 @@
+---
+lan_network: "10.0.0.0/24"
+
+guid: "1000"
+
+timezone: America/Indiana/Indianapolis
+
+docker_dir: /opt/docker/data
+
+username: adam

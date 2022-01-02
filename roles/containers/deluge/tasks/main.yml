@@ -1,0 +1,59 @@
+---
+
+- name: Make sure docker is running
+  ansible.builtin.systemd:
+    state: started
+    name: docker
+
+- name: Install docker deps
+  pip:
+    name: docker-py
+
+- name: Copy vpn files
+  copy:
+    src: "{{ item }}"
+    dest: /opt/docker/data/deluge/config/openvpn
+  with_fileglob:
+      - /opt/docker/data/deluge/config/openvpn/*
+
+- name: Make sure the Deluge container is created and running
+  docker_container:
+    name: "{{ container_name }}"
+    image: "ledokun/armhf-arch-delugevpn:latest"
+    pull: yes
+    privileged: yes
+    labels:
+      "flame.type": "application"
+      "flame.name": "{{ container_name | title }}"
+      "flame.url": "{{ dashboard_url }}"
+      "flame.icon": "custom"
+    sysctls:
+      "net.ipv4.conf.all.src_valid_mark": "1"
+    capabilities: 
+      - net_admin
+    state: 'started'
+    env:
+      "VPN_ENABLED": "yes"
+      "VPN_PROV": "pia"
+      "VPN_CLIENT": "openvpn"
+      "ENABLE_PRIVOXY": "no"
+      "LAN_NETWORK": "172.17.0.0/16, 172.18.0.0/16, {{ lan_network }}"
+      "NAME_SERVERS": "1.1.1.1, 1.0.0.1"
+      "DELUGE_DAEMON_LOG_LEVEL": "info"
+      "DELUGE_WEB_LOG_LEVEL": "info"
+      "DEBUG": "true"
+      "UMASK": "000"
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+      "VPN_USER": "{{ vpn_user }}"
+      "VPN_PASS": "{{ vpn_pass }}"
+    ports:
+      - "8112:8112"
+      - "58846:58846"
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}/data:/data"
+      - "{{ docker_dir }}/{{ container_name }}/config:/config"
+      - "~/Downloads:/home/nobody/Downloads"
+        # - "/etc/localtime:/etc/localtime:ro"
+    restart_policy: unless-stopped
