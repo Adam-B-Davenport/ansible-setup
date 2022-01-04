@@ -1,0 +1,38 @@
+---
+
+- name: Make sure the {{ container_name }} container is created and running
+  docker_container:
+    name: "{{ container_name }}"
+    image: "ghcr.io/linuxserver/jellyfin"
+    pull: yes
+    privileged: yes
+    labels:
+      "flame.type": "application"
+      "flame.name": "{{ dashboard_name }}"
+      "flame.url": "{{ dashboard_url }}"
+      "flame.icon": "custom"
+    devices:
+      - "/dev/dri/renderD128:/dev/dri/renderD128"
+    state: 'started'
+    env:
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+      "VERSION": "latest"
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}:/config"
+      - "/home/{{ username }}/Media/TV:/data/TV"
+      - "/home/{{ username }}/_slow/Media/Transcodes:/config/data/transcodes"
+      - "/home/{{ username }}/Media/Metadata:/metadata"
+      - "/home/{{ username }}/Media/Cache:/data/Cache"
+      - "/home/{{ username }}/Media/Movies:/data/Movies"
+      - "/etc/localtime:/etc/localtime:ro"
+    restart_policy: unless-stopped
+
+- name: Add {{ container_name }} to the SWAG network (reverse-proxy)
+  docker_network:
+    name: swag_network
+    connected:
+      - jackett
+    appends: yes
+  when: enable_swag

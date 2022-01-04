@@ -1,0 +1,10 @@
+---
+- name: Make sure docker is running
+  ansible.builtin.systemd:
+    state: started
+    name: docker
+
+- name: Install docker deps
+  pip:
+    name: docker-py
+

@@ -8,3 +8,22 @@ timezone: America/Indiana/Indianapolis
 docker_dir: /opt/docker/data
 
 username: adam
+
+
+enable_jellyfin: true
+
+enable_deluge: true
+
+enable_sonarr: true
+
+enable_radarr: true
+
+enable_lidarr: false
+
+enable_readarr: false
+
+enable_openbooks: true
+
+enable_jackett: true
+  
+enable_swag: true

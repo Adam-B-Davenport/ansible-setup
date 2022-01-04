@@ -1,14 +1,5 @@
 ---
 
-- name: Make sure docker is running
-  ansible.builtin.systemd:
-    state: started
-    name: docker
-
-- name: Install docker deps
-  pip:
-    name: docker-py
-
 - name: Copy vpn files
   copy:
     src: "{{ item }}"
@@ -55,5 +46,12 @@
       - "{{ docker_dir }}/{{ container_name }}/data:/data"
       - "{{ docker_dir }}/{{ container_name }}/config:/config"
       - "~/Downloads:/home/nobody/Downloads"
-        # - "/etc/localtime:/etc/localtime:ro"
-    restart_policy: unless-stopped
+      - "/etc/localtime:/etc/localtime:ro"
+
+- name: Add {{ container_name }} to the SWAG network (reverse-proxy)
+  docker_network:
+    name: swag_network
+    connected:
+      - deluge
+    appends: yes
+  when: enable_swag

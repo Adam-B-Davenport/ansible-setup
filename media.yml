@@ -6,7 +6,11 @@
     - vars/default.yml
     - vars/secrets.yml
   roles: 
+    - role: containers/swag
+    - role: docker
     - role: containers/deluge
-      tags: 
-        - deluge
-        - containers
+    - role: containers/jackett
+    - role: containers/sonarr
+    - role: containers/radarr
+    - role: containers/jellyfin
+    - role: homer
