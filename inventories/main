@@ -1,8 +1,2 @@
-[media]
-localhost
-
 [pi]
-10.0.0.20
-
-[pi:vars]
-ansible_python_interpreter=/usr/bin/python3
+pi ansible_host=10.0.0.20

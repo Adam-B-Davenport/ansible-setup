@@ -1,4 +1,6 @@
 ---
+
+
 - name: Get a list of containers
   delegate_to: localhost
   become: no
@@ -42,9 +44,18 @@
   debug:
     var: swag_urls
 
+- name: Print out
+  debug:
+    var: "{{ host }}"
+
 - name: Create a SWAG network, add all the containers to be reverse-proxied into it
   docker_network:
     name: swag_network
+
+- name: Create .config directory
+  ansible.builtin.file:
+    path: /opt/docker/data/swag/config/nginx/proxy-confs
+    state: directory
 
 - name: Install the SWAG config files
   template:
@@ -96,7 +107,7 @@
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
       "URL": "{{ host }}"
-      "SUBDOMAINS": "{{ ','.join(subdomains.values()) }}"
+      "SUBDOMAINS": "ddns"
       "VALIDATION": "dns"
       "DNSPLUGIN": "cloudflare"
       "EMAIL": "{{ email }}"

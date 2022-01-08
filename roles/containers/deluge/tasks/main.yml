@@ -3,9 +3,9 @@
 - name: Copy vpn files
   copy:
     src: "{{ item }}"
-    dest: /opt/docker/data/deluge/config/openvpn
+    dest: "{{ docker_dir }}/data/deluge/config/openvpn"
   with_fileglob:
-      - /opt/docker/data/deluge/config/openvpn/*
+      - "{{ docker_dir }}/data/deluge/config/openvpn/*"
 
 - name: Make sure the Deluge container is created and running
   docker_container:
@@ -45,7 +45,7 @@
     volumes:
       - "{{ docker_dir }}/{{ container_name }}/data:/data"
       - "{{ docker_dir }}/{{ container_name }}/config:/config"
-      - "~/Downloads:/home/nobody/Downloads"
+      - "/media/Downloads:/home/nobody/Downloads"
       - "/etc/localtime:/etc/localtime:ro"
 
 - name: Add {{ container_name }} to the SWAG network (reverse-proxy)

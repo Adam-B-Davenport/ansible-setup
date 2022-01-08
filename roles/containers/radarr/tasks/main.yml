@@ -1,14 +1,14 @@
 ---
 - name: Ensure Media directory exists
   file:
-    path: "/home/{{ username }}/Media/Movies"
+    path: "/media/Media/Movies"
     state: directory
     mode: "0755"
     owner: "{{ username }}"
 
 - name: Ensure Downloads directory exists
   file:
-    path: "/home/{{ username }}/Downloads"
+    path: "/media/Downloads"
     state: directory
     mode: "0755"
     owner: "{{ username }}"
@@ -31,8 +31,8 @@
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "{{ docker_dir }}/{{ container_name }}:/config"
-      - "/home/{{ username }}/Media/TV:/movies"
-      - "/home/{{ username }}/Downloads/TV:/downloads"
+      - "/media/Media/TV:/movies"
+      - "/media/Downloads/TV:/downloads"
     restart_policy: unless-stopped
 
 - name: Add {{ container_name }} to the SWAG network (reverse-proxy)

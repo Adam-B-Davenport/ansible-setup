@@ -1,14 +1,14 @@
 ---
 - name: Ensure Media directory exists
   file:
-    path: "/home/{{ username }}/Media/TV"
+    path: "/media/Media/TV"
     state: directory
     mode: "0755"
     owner: "{{ username }}"
 
 - name: Ensure Downloads directory exists
   file:
-    path: "/home/{{ username }}/Downloads"
+    path: "/media/Downloads"
     state: directory
     mode: "0755"
     owner: "{{ username }}"
@@ -31,8 +31,9 @@
     volumes:
       - "/etc/localtime:/etc/localtime"
       - "{{ docker_dir }}/{{ container_name }}:/config"
-      - "/home/{{ username }}/Media/TV:/tv"
-      - "/home/{{ username }}/Downloads/TV:/downloads"
+      - "{{ docker_dir }}/deluge/data:/data"
+      - "/media/Media/TV:/tv"
+      - "/media/Downloads/TV:/downloads"
     restart_policy: unless-stopped
     ports:
       - 8989:8989

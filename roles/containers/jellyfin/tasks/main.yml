@@ -12,7 +12,9 @@
       "flame.url": "{{ dashboard_url }}"
       "flame.icon": "custom"
     devices:
-      - "/dev/dri/renderD128:/dev/dri/renderD128"
+      - "/dev/video10:/dev/video10"
+      - "/dev/video11:/dev/video11"
+      - "/dev/video12:/dev/video12"
     state: 'started'
     env:
       "PUID": "{{ guid }}"
@@ -21,13 +23,15 @@
       "VERSION": "latest"
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/config"
-      - "/home/{{ username }}/Media/TV:/data/TV"
-      - "/home/{{ username }}/_slow/Media/Transcodes:/config/data/transcodes"
-      - "/home/{{ username }}/Media/Metadata:/metadata"
-      - "/home/{{ username }}/Media/Cache:/data/Cache"
-      - "/home/{{ username }}/Media/Movies:/data/Movies"
+      - "/media/Media/TV:/data/TV"
+      - "/media/_slow/Media/Transcodes:/config/data/transcodes"
+      - "/media/Media/Metadata:/metadata"
+      - "/media/Media/Cache:/data/Cache"
+      - "/media/Media/Movies:/data/Movies"
       - "/etc/localtime:/etc/localtime:ro"
     restart_policy: unless-stopped
+    ports:
+      - 8096:8096
 
 - name: Add {{ container_name }} to the SWAG network (reverse-proxy)
   docker_network:

@@ -3,12 +3,19 @@ lan_network: "10.0.0.0/24"
 
 guid: "1000"
 
+email: adam@galacticweapons.com
+
 timezone: America/Indiana/Indianapolis
 
-docker_dir: /opt/docker/data
+docker_dir: /media/docker/data
+
+host: 10.0.0.20
 
 username: adam
 
+enable_roles: true
+
+enable_homer: true
 
 enable_jellyfin: true
 
@@ -25,5 +32,28 @@ enable_readarr: false
 enable_openbooks: true
 
 enable_jackett: true
+
+enable_cloudflare-ddns: true
   
-enable_swag: true
+enable_swag: false
+
+colors: {
+  background: "#222D31",
+  foreground: "#d8d8d8",
+  color0: "#1b1918",
+  color8: "#766e6b",
+  color1: "#f22c40",
+  color9: "#f22c40",
+  color2: "#5ab738",
+  color10: "#5ab738",
+  color3: "#d5911a",
+  color11: "#d5911a",
+  color4: "#407ee7",
+  color12: "#407ee7",
+  color5: "#6666ea",
+  color13: "#6666ea",
+  color6: "#00ad9c",
+  color14: "#00ad9c",
+  color7: "#a8a19f",
+  color15: "#f1efee",
+}

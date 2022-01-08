@@ -6,8 +6,9 @@
     - vars/default.yml
     - vars/secrets.yml
   roles: 
-    - role: containers/swag
     - role: docker
+    - role: containers/cloudflare-ddns
+    # - role: containers/swag
     - role: containers/deluge
     - role: containers/jackett
     - role: containers/sonarr
