@@ -69,8 +69,11 @@
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
+      "VIRTUAL_HOST": "homer.box"
     ports:
       - 8080:8080
+    exposed_ports:
+      - 8080
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/www/assets"
     restart_policy: unless-stopped
@@ -84,19 +87,3 @@
     ports:
       - 3000:3000
     restart_policy: unless-stopped
-
-- name: Add {{ container_name }} to the SWAG network (reverse-proxy)
-  docker_network:
-    name: swag_network
-    connected:
-      - homer
-    appends: yes
-  when: enable_swag
-
-- name: Add {{ container_name }} to the SWAG network (reverse-proxy)
-  docker_network:
-    name: swag_network
-    connected:
-      - cors-container
-    appends: yes
-  when: enable_swag

@@ -38,10 +38,3 @@
     ports:
       - 8989:8989
 
-- name: Add {{ container_name }} to the SWAG network (reverse-proxy)
-  docker_network:
-    name: swag_network
-    connected:
-      - sonarr
-    appends: yes
-  when: enable_swag

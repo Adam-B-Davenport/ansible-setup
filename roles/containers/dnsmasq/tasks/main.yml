@@ -1,0 +1,47 @@
+---
+- name: Stop the systed resolver service
+  service: 
+    name: systemd-resolved
+    state: stopped
+
+- name: Copy the config
+  file:
+    path: "{{ docker_dir }}/{{ container_name}}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+
+- name: Copy the config
+  copy:
+    src: "files/dnsmasq.conf"
+    dest: "{{ docker_dir }}/{{ container_name}}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Make sure the {{ container_name }} container is created and running
+  docker_container:
+    name: "{{ container_name }}"
+    image: "outlyernet/dnsmasq-multiarch"
+    pull: yes
+    privileged: yes
+    labels:
+      "flame.type": "application"
+      "flame.name": "{{ dashboard_name }}"
+      "flame.url": "{{ dashboard_url }}"
+      "flame.icon": "custom"
+    state: "started"
+    env:
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "VERSION": "latest"
+      "HTTP_USER": "foo"
+      "HTTP_PASS": "bar"
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}:/config"
+      - "{{ docker_dir }}/{{ container_name}}/dnsmasq.conf:/etc/dnsmasq.conf"
+    restart_policy: always
+    ports:
+      - 53:53/udp
+      - 5380:80
+    exposed_ports:
+      - 53

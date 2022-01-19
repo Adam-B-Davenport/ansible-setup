@@ -35,10 +35,3 @@
       - "/media/Downloads/TV:/downloads"
     restart_policy: unless-stopped
 
-- name: Add {{ container_name }} to the SWAG network (reverse-proxy)
-  docker_network:
-    name: swag_network
-    connected:
-      - radar
-    appends: yes
-  when: enable_swag
