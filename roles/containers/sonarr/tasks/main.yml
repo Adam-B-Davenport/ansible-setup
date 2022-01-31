@@ -28,6 +28,8 @@
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
+      "VIRTUAL_HOST": "sonarr.box"
+      "VIRTUAL_PORT": "8989"
     volumes:
       - "/etc/localtime:/etc/localtime"
       - "{{ docker_dir }}/{{ container_name }}:/config"
@@ -37,4 +39,6 @@
     restart_policy: unless-stopped
     ports:
       - 8989:8989
+    exposed_ports:
+      - 8096
 
