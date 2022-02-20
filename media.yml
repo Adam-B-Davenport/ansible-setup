@@ -7,9 +7,9 @@
     - vars/secrets.yml
   roles: 
     - role: docker
+    - role: containers/deluge
     - role: containers/dnsmasq
     - role: containers/nginx-proxy
-    - role: containers/deluge
     - role: containers/jackett
     - role: containers/sonarr
     - role: containers/radarr

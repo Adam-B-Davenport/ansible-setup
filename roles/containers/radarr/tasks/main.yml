@@ -34,4 +34,6 @@
       - "/media/Media/TV:/movies"
       - "/media/Downloads/TV:/downloads"
     restart_policy: unless-stopped
+    ports:
+      - 7878:7878
 

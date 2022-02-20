@@ -8,3 +8,17 @@
   pip:
     name: docker-py
 
+- name: Add user to docker group
+  user:
+    name: '{{ username }}'
+    groups: docker
+    append: yes
+  become: yes
+
+- name: Link local time
+  file:
+    src: "/usr/share/zoneinfo/US/East-Indiana"
+    dest: "/etc/localtime"
+    state: link
+  become: yes
+
