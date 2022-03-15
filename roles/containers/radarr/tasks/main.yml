@@ -31,7 +31,7 @@
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "{{ docker_dir }}/{{ container_name }}:/config"
-      - "/media/Media/TV:/movies"
+      - "/media/Media/Movies:/movies"
       - "/media/Downloads/TV:/downloads"
     restart_policy: unless-stopped
     ports:

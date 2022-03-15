@@ -1,0 +1,18 @@
+---
+- name: Setup Arch System
+  hosts: all
+  become: yes
+  tasks: 
+    - name: Install packages
+      community.general.pacman:
+        name: 
+          - kitty
+          - firefox
+          - steam
+          - discord
+          - imwheel
+          - nitrogen
+          - awesome
+          - vicious
+          - network-manager-applet
+        state: present
