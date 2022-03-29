@@ -1,0 +1,9 @@
+---
+- name: Pull 
+  ansible.builtin.git:
+    repo: 'https://aur.archlinux.org/yay.git'
+    dest: ~/dev/yay
+    clone: yes
+    update: yes
+
+- 
