@@ -33,7 +33,7 @@
       - "{{ docker_dir }}/{{ container_name }}:/config"
       - "/media/Media/Movies:/movies"
       - "/media/Downloads/TV:/downloads"
-    restart_policy: unless-stopped
+    restart_policy: always
     ports:
       - 7878:7878
 

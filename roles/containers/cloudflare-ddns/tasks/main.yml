@@ -13,4 +13,4 @@
       "ZONE": "{{ host }}"
       "PROXIED": "true"
       "SUBDOMAIN": "ddns"
-    restart_policy: unless-stopped
+    restart_policy: always

@@ -36,7 +36,7 @@
       - "{{ docker_dir }}/deluge/data:/data"
       - "/media/Media/TV:/tv"
       - "/media/Downloads/TV:/downloads"
-    restart_policy: unless-stopped
+    restart_policy: always
     ports:
       - 8989:8989
     exposed_ports:
