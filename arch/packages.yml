@@ -49,3 +49,17 @@ packages:
   - xorg-xvinfo
   - xorg-xwd
   - xorg-xwud
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - virt-manager
+  - vlc
+  - nautilus
+  - lxinput
+  - man-pages
+  - mupdf
+  - alacritty
+  - scrot
+  - sshfs
+  - lxappearance
+  - go-tools
+  - gopls

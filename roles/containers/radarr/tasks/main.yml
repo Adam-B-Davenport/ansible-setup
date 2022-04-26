@@ -31,6 +31,7 @@
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "{{ docker_dir }}/{{ container_name }}:/config"
+      - "{{ docker_dir }}/deluge/data:/data"
       - "/media/Media/Movies:/movies"
       - "/media/Downloads/TV:/downloads"
     restart_policy: unless-stopped
