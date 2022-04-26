@@ -30,7 +30,7 @@
       - "/media/Media/Cache:/data/Cache"
       - "/media/Media/Movies:/data/Movies"
       - "/etc/localtime:/etc/localtime:ro"
-    restart_policy: unless-stopped
+    restart_policy: always
     ports:
       - 8096:8096
     exposed_ports:
