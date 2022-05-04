@@ -13,5 +13,6 @@
     - role: containers/jackett
     - role: containers/sonarr
     - role: containers/radarr
+    - role: containers/readarr
     - role: containers/jellyfin
     - role: homer

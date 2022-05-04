@@ -15,4 +15,6 @@
           - awesome
           - vicious
           - network-manager-applet
+          - lightdm
+          - lightdm-gtk-greeter
         state: present

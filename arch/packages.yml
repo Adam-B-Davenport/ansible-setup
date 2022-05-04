@@ -1,21 +1,34 @@
 ---
 packages:
-  - kitty
-  - firefox
-  - steam
-  - discord
-  - imwheel
-  - nitrogen
+  - alacritty
   - awesome
-  - vicious
+  - blueman
+  - btop
+  - discord
+  - docker
+  - firefox
+  - go-tools
+  - gopls
+  - imwheel
+  - inetutils
+  - kitty
+  - lxappearance
+  - lxinput
+  - man-pages
+  - mupdf
+  - nautilus
   - network-manager-applet
+  - nitrogen
+  - scrot
+  - sshfs
+  - steam
   - tree
   - ttf-fantasque-sans-mono
   - ttf-inconsolata
   - ttf-ubuntu-font-family
-  - blueman
-  - btop
-  - docker
+  - vicious
+  - virt-manager
+  - vlc
   - wmname
   - xkeycaps
   - xorg-bdftopcf
@@ -51,15 +64,3 @@ packages:
   - xorg-xwud
   - zsh-autosuggestions
   - zsh-syntax-highlighting
-  - virt-manager
-  - vlc
-  - nautilus
-  - lxinput
-  - man-pages
-  - mupdf
-  - alacritty
-  - scrot
-  - sshfs
-  - lxappearance
-  - go-tools
-  - gopls
