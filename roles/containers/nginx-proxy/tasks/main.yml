@@ -19,6 +19,6 @@
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/config"
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
-    restart_policy: unless-stopped
+    restart_policy: always
     ports:
       - 80:80

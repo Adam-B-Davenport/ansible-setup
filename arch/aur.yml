@@ -4,14 +4,16 @@
   hosts: all
   tasks: 
 
-    - name: Sync with repos
-      community.general.pacman:
-        executable: yay
-        update_cache: yes
-        upgrade: yes
-
-    - name: Install jellyfin
-      community.general.pacman:
-        executable: yay
-        name: jellyfin-bin
+    - name: Install yay using makepkg if it isn't installed already
+      kewlfft.aur.aur:
+        name: yay
+        use: makepkg
         state: present
+      become: yes
+
+  - name: Install aur packages
+    kewlfft.aur.aur:
+      use: yay
+      name:
+        - package_name_1
+        - package_name_2

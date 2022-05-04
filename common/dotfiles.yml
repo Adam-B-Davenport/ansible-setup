@@ -5,7 +5,7 @@
 
     - name: Pull dotfiles from git
       ansible.builtin.git:
-        repo: 'https://gitlab.com/adavenport/dotfiles.git'
+        repo: 'git@gitlab.com:adavenport/dotfiles.git'
         dest: ~/dotfiles
         clone: yes
         update: yes

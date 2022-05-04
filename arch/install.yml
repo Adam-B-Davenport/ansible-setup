@@ -1,7 +1,9 @@
 ---
-- name: Setup Arch System
+- name: Install packages with pacman
   hosts: all
   become: yes
+  vars_files:
+    - packages.txt
   tasks: 
     - name: Sync with repos
       community.general.pacman:
@@ -10,22 +12,5 @@
 
     - name: Install packages
       community.general.pacman:
-        name: 
-          - neovim
-          - git
-          - go
-          - go-tools
-          - ripgrep
-          - base-devel
-          - inetutils
-          - docker
-          - fzf 
-          - man
-          - python-pip
-          - python-pynvim
-          - ripgrep 
-          - sudo 
-          - tmux
-          - zsh 
-          - zsh-syntax-highlighting
+        name: "{{ packages }}"
         state: present

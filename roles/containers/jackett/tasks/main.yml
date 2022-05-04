@@ -19,5 +19,5 @@
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "{{ docker_dir }}/{{ container_name }}:/config"
-    restart_policy: unless-stopped
+    restart_policy: always
 
