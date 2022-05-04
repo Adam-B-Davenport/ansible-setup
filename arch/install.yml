@@ -17,6 +17,7 @@
           - go-tools
           - ripgrep
           - base-devel
+          - inetutils
           - docker
           - fzf 
           - man
