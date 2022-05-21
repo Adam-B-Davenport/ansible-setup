@@ -2,6 +2,7 @@
 - name: Make sure docker is running
   ansible.builtin.systemd:
     state: started
+    enabled: true
     name: docker
 
 - name: Install docker deps

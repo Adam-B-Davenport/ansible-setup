@@ -2,7 +2,7 @@
 
 - name: Get a list of containers
   delegate_to: localhost
-  become: no
+  become: false
   find:
     paths: 
       - "roles/containers"
