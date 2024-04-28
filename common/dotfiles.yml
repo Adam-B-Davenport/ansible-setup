@@ -33,6 +33,24 @@
         dest: ~/.zshrc
         state: link
 
+    - name: Link awesome
+      ansible.builtin.file:
+        src: ~/dotfiles/.config/awesome
+        dest: ~/.config/awesome
+        state: link
+
+    - name: Link alacritty
+      ansible.builtin.file:
+        src: ~/dotfiles/.config/alacritty/
+        dest: ~/.config/alacritty
+        state: link
+
+    - name: Link kitty
+      ansible.builtin.file:
+        src: ~/dotfiles/.config/kitty/
+        dest: ~/.config/kitty
+        state: link
+
     - name: Check for vim plug
       ansible.builtin.stat:
         path: ~/.local/share/nvim/site/autoload/plug.vim

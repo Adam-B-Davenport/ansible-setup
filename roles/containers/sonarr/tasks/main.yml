@@ -18,6 +18,7 @@
     name: "{{ container_name }}"
     image: "linuxserver/sonarr:latest"
     pull: yes
+    platform: linux/armv7
     labels:
       "flame.type": "application"
       "flame.name": "{{ container_name | title }}"

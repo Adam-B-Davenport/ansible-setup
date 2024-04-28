@@ -23,6 +23,7 @@
     capabilities: 
       - net_admin
     state: 'started'
+    restart_policy: always
     env:
       "VPN_ENABLED": "yes"
       "VPN_PROV": "pia"
