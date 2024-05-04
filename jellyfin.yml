@@ -1,0 +1,10 @@
+---
+
+- hosts: pi
+  become: yes
+  vars_files:
+    - vars/default.yml
+    - vars/secrets.yml
+  roles: 
+    - role: docker
+    - role: containers/jellyfin
