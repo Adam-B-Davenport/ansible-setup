@@ -15,4 +15,3 @@
     - role: containers/radarr
     - role: containers/readarr
     - role: containers/jellyfin
-    - role: homer
