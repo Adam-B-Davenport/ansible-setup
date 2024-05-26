@@ -5,9 +5,9 @@
     enabled: true
     name: docker
 
-- name: Install docker deps
-  pip:
-    name: docker-py
+# - name: Install docker deps
+#   pip:
+#     name: docker-py
 
 - name: Add user to docker group
   user:
