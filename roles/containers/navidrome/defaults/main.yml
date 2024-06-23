@@ -1,0 +1,6 @@
+---
+container_name: navidrome
+
+dashboard_url: "http://navidrome.box"
+
+homer_category: media

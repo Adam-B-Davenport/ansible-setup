@@ -14,4 +14,5 @@
     - role: containers/radarr
     - role: containers/readarr
     - role: containers/jellyfin
+    - role: containers/navidrome
     - role: containers/wireguard
