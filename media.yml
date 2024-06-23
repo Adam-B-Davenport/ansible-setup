@@ -8,9 +8,8 @@
   roles: 
     - role: docker
     - role: containers/deluge
-    - role: containers/dnsmasq
-    - role: containers/nginx-proxy
     - role: containers/jackett
+    - role: containers/lidarr
     - role: containers/sonarr
     - role: containers/radarr
     - role: containers/readarr
