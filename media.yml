@@ -15,4 +15,5 @@
     - role: containers/readarr
     - role: containers/prowlarr
     - role: containers/jellyfin
+    - role: containers/navidrome
     - role: containers/wireguard

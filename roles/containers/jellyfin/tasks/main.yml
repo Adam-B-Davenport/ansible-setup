@@ -14,6 +14,7 @@
       - "/dev/video10:/dev/video10"
       - "/dev/video11:/dev/video11"
       - "/dev/video12:/dev/video12"
+      - "/dev/dri:/dev/dri"
     state: "started"
     env:
       "PUID": "{{ guid }}"
@@ -22,6 +23,7 @@
       "VERSION": "latest"
       "VIRTUAL_HOST": "jellyfin.box"
       "VIRTUAL_PORT": "8096"
+      "DOCKER_MODS": "linuxserver/mods:jellyfin-opencl-intel"
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/config"
       - "/media/Media/TV:/data/TV"
