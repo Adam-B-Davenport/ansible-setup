@@ -1,0 +1,6 @@
+---
+container_name: prowlarr
+
+dashboard_url: "http://prowlarr.box/"
+
+homer_category: media

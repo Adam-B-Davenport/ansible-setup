@@ -13,5 +13,6 @@
     - role: containers/sonarr
     - role: containers/radarr
     - role: containers/readarr
+    - role: containers/prowlarr
     - role: containers/jellyfin
     - role: containers/wireguard
