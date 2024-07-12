@@ -1,0 +1,6 @@
+---
+container_name: nextcloud
+
+dashboard_url: "http://nextcloud.box"
+
+homer_category: media

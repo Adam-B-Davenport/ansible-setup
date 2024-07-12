@@ -17,3 +17,4 @@
     - role: containers/jellyfin
     - role: containers/navidrome
     - role: containers/wireguard
+    - role: containers/nextcloud

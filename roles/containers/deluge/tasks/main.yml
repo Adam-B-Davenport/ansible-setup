@@ -10,7 +10,7 @@
 - name: Make sure the Deluge container is created and running
   docker_container:
     name: "{{ container_name }}"
-    image: "ledokun/armhf-arch-delugevpn:latest"
+    image: "binhex/arch-delugevpn"
     pull: yes
     privileged: yes
     labels:
