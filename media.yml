@@ -18,3 +18,4 @@
     - role: containers/navidrome
     - role: containers/wireguard
     - role: containers/nextcloud
+    - role: containers/mumble

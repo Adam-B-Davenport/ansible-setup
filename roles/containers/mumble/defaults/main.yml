@@ -1,0 +1,6 @@
+---
+container_name: mumble
+
+dashboard_url: "http://mumble.box"
+
+homer_category: media
