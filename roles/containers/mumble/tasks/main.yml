@@ -4,6 +4,7 @@
     name: "{{ container_name }}"
     image: "mumblevoip/mumble-server:latest"
     pull: yes
+    user: "1000:1000"
     labels:
       "flame.type": "application"
       "flame.name": "{{ container_name }}"
@@ -11,11 +12,10 @@
       "flame.icon": "custom"
     state: "started"
     env:
-      "PUID": "0"
-      "PGID": "0"
+      "PUID": "1000"
+      "PGID": "1000"
       "TZ": "{{ timezone }}"
       "VIRTUAL_HOST": "{{ container_name }}.box"
-      "ScanSchedule": "@every 24h"
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/data"
       - "/media/Media/Music:/music"
