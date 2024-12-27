@@ -50,5 +50,5 @@
     volumes:
       - "{{ docker_dir }}/{{ container_name }}/data:/data"
       - "{{ docker_dir }}/{{ container_name }}/config:/config"
-      - "/media/Downloads:/home/nobody/Downloads"
+      - "/tank/Downloads:/home/nobody/Downloads"
       - "/etc/localtime:/etc/localtime:ro"

@@ -29,6 +29,8 @@
       - "/media/Media/Cache:/data/Cache"
       - "/media/Media/Movies:/data/Movies"
       - "/etc/localtime:/etc/localtime:ro"
+      - "/tank/TV:/data/TV2"
+      - "/tank/Movies:/data/Movies2"
     restart_policy: always
     ports:
       - 8096:8096
