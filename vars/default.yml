@@ -25,9 +25,9 @@ enable_sonarr: true
 
 enable_radarr: true
 
-enable_lidarr: false
+enable_lidarr: true
 
-enable_readarr: false
+enable_readarr: true
 
 enable_openbooks: true
 
@@ -39,7 +39,9 @@ enable_nginx-proxy: true
 
 enable_dnsmasq: true
   
-enable_swag: false
+enable_swag: true
+
+enable_navidrome: true
 
 colors: {
   background: "#222D31",

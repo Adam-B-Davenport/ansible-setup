@@ -8,6 +8,7 @@
   roles: 
     - role: docker
     - role: containers/deluge
+    - role: containers/nginx-proxy
     - role: containers/dnsmasq
     - role: containers/jackett
     - role: containers/lidarr
@@ -18,5 +19,5 @@
     - role: containers/jellyfin
     - role: containers/navidrome
     - role: containers/wireguard
-    - role: containers/nextcloud
+    # - role: containers/nextcloud
     - role: containers/mumble

@@ -1,8 +1,8 @@
 ---
-- name: Stop the systed resolver service
-  service: 
-    name: systemd-resolved
-    state: stopped
+# - name: Stop the systed resolver service
+#   service: 
+#     name: systemd-resolved
+#     state: stopped
 
 - name: Copy the config
   file:
