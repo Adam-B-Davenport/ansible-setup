@@ -1,6 +1,6 @@
 ---
 container_name: readarr
 
-dashboard_url: "http://readarr.box"
+dashboard_url: "http://readarr.home"
 
 homer_category: media

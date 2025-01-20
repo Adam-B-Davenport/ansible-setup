@@ -40,7 +40,7 @@
       "TZ": "{{ timezone }}"
       "VPN_USER": "{{ vpn_user }}"
       "VPN_PASS": "{{ vpn_pass }}"
-      "VIRTUAL_HOST": "deluge.box"
+      "VIRTUAL_HOST": "deluge.home"
       "VIRTUAL_PORT": "8112"
     ports:
       - "8112:8112"

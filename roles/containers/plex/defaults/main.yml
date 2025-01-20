@@ -1,7 +1,7 @@
 ---
 container_name: plex
 
-dashboard_url: "http://plex.box"
+dashboard_url: "http://plex.home"
 
 homer_category: media
 

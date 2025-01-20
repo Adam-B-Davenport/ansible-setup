@@ -15,7 +15,7 @@
       "PUID": "1000"
       "PGID": "1000"
       "TZ": "{{ timezone }}"
-      "VIRTUAL_HOST": "{{ container_name }}.box"
+      "VIRTUAL_HOST": "{{ container_name }}.home"
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/data"
       - "/media/Media/Music:/music"

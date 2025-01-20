@@ -28,7 +28,7 @@
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
-      "VIRTUAL_HOST": "readarr.box"
+      "VIRTUAL_HOST": "readarr.home"
       "VIRTUAL_PORT": "8787"
     volumes:
       - "/etc/localtime:/etc/localtime"

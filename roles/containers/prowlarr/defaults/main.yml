@@ -1,6 +1,6 @@
 ---
 container_name: prowlarr
 
-dashboard_url: "http://prowlarr.box/"
+dashboard_url: "http://prowlarr.home/"
 
 homer_category: media

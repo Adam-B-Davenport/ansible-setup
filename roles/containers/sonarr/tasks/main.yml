@@ -28,7 +28,7 @@
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
-      "VIRTUAL_HOST": "sonarr.box"
+      "VIRTUAL_HOST": "sonarr.home"
       "VIRTUAL_PORT": "8989"
     volumes:
       - "/etc/localtime:/etc/localtime"

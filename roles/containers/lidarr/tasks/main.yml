@@ -35,7 +35,7 @@
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
-      "VIRTUAL_HOST": "lidarr.box"
+      "VIRTUAL_HOST": "lidarr.home"
       "VIRTUAL_PORT": "8989"
     volumes:
       - "/etc/localtime:/etc/localtime"

@@ -1,7 +1,7 @@
 ---
 container_name: jellyfin
 
-dashboard_url: "http://jellyfin.box"
+dashboard_url: "http://jellyfin.home"
 
 homer_category: media
 

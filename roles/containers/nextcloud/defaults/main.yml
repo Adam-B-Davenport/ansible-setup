@@ -1,6 +1,6 @@
 ---
 container_name: nextcloud
 
-dashboard_url: "http://nextcloud.box"
+dashboard_url: "http://nextcloud.home"
 
 homer_category: media

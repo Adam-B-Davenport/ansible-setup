@@ -18,7 +18,7 @@
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
       "VERSION": "latest"
-      "VIRTUAL_HOST": "jellyfin.box"
+      "VIRTUAL_HOST": "jellyfin.home"
       "VIRTUAL_PORT": "8096"
       "DOCKER_MODS": "linuxserver/mods:jellyfin-opencl-intel"
     volumes:

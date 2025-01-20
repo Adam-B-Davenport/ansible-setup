@@ -14,7 +14,7 @@
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
-      "VIRTUAL_HOST": "navidrome.box"
+      "VIRTUAL_HOST": "navidrome.home"
       "ScanSchedule": "@every 24h"
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/data"
