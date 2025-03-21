@@ -1,0 +1,29 @@
+---
+- name: Make sure the {{ container_name }} container is created and running
+  docker_container:
+    name: "{{ container_name }}"
+    image: "syncthing/syncthing:latest"
+    pull: yes
+    labels:
+      "flame.type": "application"
+      "flame.name": "{{ container_name }}"
+      "flame.url": "{{ dashboard_url }}"
+      "flame.icon": "custom"
+    state: "started"
+    env:
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+      "VIRTUAL_HOST": "{{ container_name }}.home"
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}/data:/data"
+      - "{{ docker_dir }}/{{ container_name }}/config:/config"
+      - "/media/Media/sync:/sync"
+      - "/tank/sync:/tank"
+      - "/etc/localtime:/etc/localtime:ro"
+    restart_policy: always
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp

@@ -1,0 +1,6 @@
+---
+container_name: syncthing
+
+dashboard_url: "http://syncthing.home"
+
+homer_category: media
