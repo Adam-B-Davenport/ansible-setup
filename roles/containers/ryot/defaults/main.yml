@@ -1,0 +1,8 @@
+---
+container_name: ryot
+
+db_container_name: ryot-db
+
+dashboard_url: "http://navidrome.box"
+
+homer_category: media

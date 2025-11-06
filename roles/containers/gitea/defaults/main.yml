@@ -1,0 +1,8 @@
+---
+container_name: gitea
+
+dashboard_url: "http://gitea.home"
+
+homer_category: media
+
+health_url: "http://{{ ansible_default_ipv4.address }}:3000/http://gitea:3000"

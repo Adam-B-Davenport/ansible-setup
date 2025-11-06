@@ -7,6 +7,7 @@
     - vars/secrets.yml
   roles: 
     - role: docker
+    - role: containers/gitea
     - role: containers/deluge
     - role: containers/nginx-proxy
     - role: containers/dnsmasq
@@ -14,7 +15,7 @@
     - role: containers/lidarr
     - role: containers/sonarr
     - role: containers/radarr
-    - role: containers/readarr
+    #- role: containers/readarr
     - role: containers/prowlarr
     - role: containers/jellyfin
     - role: containers/navidrome

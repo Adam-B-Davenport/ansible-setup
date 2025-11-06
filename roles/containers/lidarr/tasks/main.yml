@@ -23,7 +23,7 @@
 - name: Make sure the {{ container_name }} container is created and running
   docker_container:
     name: "{{ container_name }}"
-    image: "linuxserver/lidarr:latest"
+    image: "linuxserver/lidarr:nightly"
     pull: yes
     labels:
       "flame.type": "application"

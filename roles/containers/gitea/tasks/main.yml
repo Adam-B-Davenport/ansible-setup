@@ -1,0 +1,73 @@
+---
+- name: Create gitea_network
+  docker_network:
+    name: gitea_network
+    
+- name: Make sure the "{{ container_name }}_db" container is created and running
+  docker_container:
+    name: "{{ container_name }}_db"
+    image: docker.io/library/postgres:14
+    pull: yes
+    privileged: yes
+    labels:
+      "flame.type": "application"
+      "flame.name": "gitea"
+      "flame.url": "{{ dashboard_url }}"
+      "flame.icon": "custom"
+    state: "started"
+    env:
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+      "VERSION": "latest"
+      "VIRTUAL_HOST": "gitea.home"
+      "VIRTUAL_PORT": "3000"
+      "POSTGRES_USER": "gitea"
+      "POSTGRES_PASSWORD": "{{ gitea_db_password }}"
+      "POSTGRES_DB": "gitea"
+    networks:
+      - name: gitea_network
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}/database:/var/lib/postgresql/data"
+      - "/etc/localtime:/etc/localtime:ro"
+    restart_policy: always
+
+- name: Make sure the {{ container_name }} container is created and running
+  docker_container:
+    name: "{{ container_name }}"
+    image: docker.gitea.com/gitea:1.25.1
+    pull: yes
+    privileged: yes
+    labels:
+      "flame.type": "application"
+      "flame.name": "gitea"
+      "flame.url": "{{ dashboard_url }}"
+      "flame.icon": "custom"
+    state: "started"
+    env:
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+      "VERSION": "latest"
+      "VIRTUAL_HOST": "gitea.home"
+      "VIRTUAL_PORT": "3000"
+      "GITEA__database__DB_TYPE": "postgres"
+      "GITEA__database__HOST": "gitea_db:5432"
+      "GITEA__database__NAME": "gitea"
+      "GITEA__database__USER": "gitea"
+      "GITEA__database__PASSWD": "{{ gitea_db_password }}"
+      "GITEA__server__SSH_LISTEN_PORT": "222"
+      "GITEA__server__SSH_PORT": "222"
+      "SSH_PORT": "222"
+      "SSH_LISTEN_PORT": "222"
+    networks:
+      - name: gitea_network
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}/data:/data"
+      - "{{ docker_dir }}/{{ container_name }}/ssh:/etc/ssh"
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    restart_policy: always
+    ports:
+      - "3000:3000"
+      - "222:222"
