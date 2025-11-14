@@ -1,0 +1,11 @@
+---
+
+- hosts: tera
+  become: yes
+  vars_files:
+    - vars/default.yml
+    - vars/secrets.yml
+  roles: 
+    - role: docker
+    - role: containers/couchdb
+    #- role: containers/nextcloud

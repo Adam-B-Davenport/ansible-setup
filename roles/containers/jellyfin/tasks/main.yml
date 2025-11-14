@@ -31,6 +31,7 @@
       - "/etc/localtime:/etc/localtime:ro"
       - "/tank/TV:/data/TV2"
       - "/tank/Movies:/data/Movies2"
+      - "/tank/Exercise:/data/Exercise"
     restart_policy: always
     ports:
       - 8096:8096

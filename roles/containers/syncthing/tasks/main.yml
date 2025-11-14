@@ -16,8 +16,7 @@
       "TZ": "{{ timezone }}"
       "VIRTUAL_HOST": "{{ container_name }}.home"
     volumes:
-      - "{{ docker_dir }}/{{ container_name }}/data:/data"
-      - "{{ docker_dir }}/{{ container_name }}/config:/config"
+      - "{{ docker_dir }}/{{ container_name }}:/var/syncthing"
       - "/media/Media/sync:/sync"
       - "/tank/sync:/tank"
       - "/etc/localtime:/etc/localtime:ro"

@@ -1,0 +1,6 @@
+---
+container_name: couchdb
+
+dashboard_url: http://couchdb.home
+
+homer_category: media
