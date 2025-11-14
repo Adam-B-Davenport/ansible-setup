@@ -10,8 +10,6 @@
       "flame.name": "{{ container_name | title }}"
       "flame.url": "{{ dashboard_url }}"
       "flame.icon": "custom"
-    sysctls:
-      "net.ipv4.conf.all.src_valid_mark": "1"
     state: 'started'
     restart_policy: always
     env:
