@@ -1,0 +1,17 @@
+---
+- hosts: tera
+  become: yes
+  vars:
+    backup_mode: "daily"  # override with -e backup_mode=weekly
+  tasks:
+    - name: Run docker-backup script on remote host
+      command: 
+        argv:
+          - /usr/local/bin/docker-backup.sh
+          - --mode
+          - "{{ backup_mode }}"
+      register: backup_run
+      changed_when: false
+    - name: Show backup output
+      debug:
+        var: backup_run.stdout_lines

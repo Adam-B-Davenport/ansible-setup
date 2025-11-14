@@ -1,0 +1,39 @@
+---
+- name: Ensure backup destination root exists
+  file:
+    path: "{{ backup_dest_dir }}"
+    state: directory
+    owner: "{{ backup_user }}"
+    group: "{{ backup_user }}"
+    mode: "0750"
+  tags: [backup]
+
+- name: Install docker-backup script
+  template:
+    src: docker-backup.sh.j2
+    dest: /usr/local/bin/docker-backup.sh
+    owner: root
+    group: root
+    mode: '0755'
+  tags: [backup]
+
+- name: Configure daily backup cron (02:30)
+  cron:
+    name: "Docker backup daily"
+    user: root
+    minute: "{{ backup_daily_time.split(' ')[0] }}"
+    hour: "{{ backup_daily_time.split(' ')[1] }}"
+    job: "/usr/local/bin/docker-backup.sh --mode daily >> /var/log/docker-backup.log 2>&1"
+    disabled: "{{ not backup_enable_cron }}"
+  tags: [backup]
+
+- name: Configure weekly backup cron (Sunday 04:00)
+  cron:
+    name: "Docker backup weekly"
+    user: root
+    minute: "{{ backup_weekly_time.split(' ')[0] }}"
+    hour: "{{ backup_weekly_time.split(' ')[1] }}"
+    weekday: "{{ backup_weekly_day }}"
+    job: "/usr/local/bin/docker-backup.sh --mode weekly >> /var/log/docker-backup.log 2>&1"
+    disabled: "{{ not backup_enable_cron }}"
+  tags: [backup]

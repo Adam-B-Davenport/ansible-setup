@@ -1,0 +1,22 @@
+---
+# Backup role defaults
+backup_source_dir: "/media/docker"
+backup_dest_dir: "/tank/backups/docker"
+
+# Cron scheduling
+backup_enable_cron: true
+backup_daily_time: "30 2"   # minute hour for daily (02:30)
+backup_weekly_time: "0 4"   # minute hour for weekly (04:00)
+backup_weekly_day: "sun"    # weekly day (sun, mon, ...)
+
+# Retention
+backup_keep_daily: 7
+backup_keep_weekly: 4
+
+# Behavior
+backup_stop_docker: true
+backup_docker_service: "docker"
+backup_user: "root"
+
+# Exclusions: list of rsync patterns (e.g. "*/cache/*"). Empty by default.
+backup_excludes: []

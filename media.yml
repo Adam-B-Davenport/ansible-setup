@@ -7,6 +7,7 @@
     - vars/secrets.yml
   roles: 
     - role: docker
+    - role: backup
     - role: containers/gitea
     - role: containers/deluge
     - role: containers/nginx-proxy
