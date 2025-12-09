@@ -1,0 +1,9 @@
+# Managed by Ansible - weekly borgmatic check
+[Unit]
+Description=Weekly borgmatic repository/archives check
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/borgmatic --verbosity 0 --check

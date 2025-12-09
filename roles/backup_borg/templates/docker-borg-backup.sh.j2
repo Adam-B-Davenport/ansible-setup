@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Managed by Ansible - Manual Borg backup for Docker data
+# - Stops all containers (if configured in borgmatic hooks)
+# - Runs borgmatic create+prune with stats
+# - Starts containers again (via hooks)
+
+# Optional: allow verbose flag
+VERBOSE="--verbosity 1 --stats"
+if [[ ${1-} == "--quiet" ]]; then
+  VERBOSE="--verbosity 0"
+fi
+
+# Execute borgmatic create then prune (modern borgmatic uses subcommands)
+/usr/bin/borgmatic $VERBOSE create
+/usr/bin/borgmatic $VERBOSE prune

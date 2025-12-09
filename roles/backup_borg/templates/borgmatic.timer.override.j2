@@ -1,0 +1,5 @@
+# Managed by Ansible - override borgmatic timer schedule
+[Timer]
+OnCalendar=*-*-* {{ borg_daily_time }}
+RandomizedDelaySec=10m
+Persistent=true

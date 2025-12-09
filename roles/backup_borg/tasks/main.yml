@@ -1,0 +1,114 @@
+---
+- name: Ensure borg packages are installed (Debian)
+  apt:
+    name:
+      - borgbackup
+      - borgmatic
+    state: present
+    update_cache: yes
+  tags: [backup_borg]
+
+- name: Ensure repo parent directory exists
+  file:
+    path: "{{ borg_repo_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0700"
+  tags: [backup_borg]
+
+- name: Create borgmatic config directory
+  file:
+    path: /etc/borgmatic
+    state: directory
+    owner: root
+    group: root
+    mode: "0750"
+  tags: [backup_borg]
+
+- name: Deploy borgmatic config
+  template:
+    src: borgmatic.yaml.j2
+    dest: /etc/borgmatic/config.yaml
+    owner: root
+    group: root
+    mode: "0600"
+  tags: [backup_borg]
+
+- name: Initialize borg repository if missing
+  shell: |
+    set -euo pipefail
+    export BORG_REPO="{{ borg_repo_path }}"
+    {% if borg_use_encryption %}
+    export BORG_PASSPHRASE='{{ borg_repo_passphrase }}'
+    {% endif %}
+    if borg info "$BORG_REPO" >/dev/null 2>&1; then
+      echo "Repository exists"
+    else
+      borg init --encryption {{ 'repokey' if borg_use_encryption else 'none' }} "$BORG_REPO"
+      echo "Repository initialized"
+    fi
+  args:
+    executable: /bin/bash
+  register: borg_init
+  changed_when: "'initialized' in borg_init.stdout"
+  tags: [backup_borg]
+
+- name: Create systemd timer override directory
+  file:
+    path: /etc/systemd/system/borgmatic.timer.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags: [backup_borg]
+
+- name: Deploy borgmatic.timer override (02:30)
+  template:
+    src: borgmatic.timer.override.j2
+    dest: /etc/systemd/system/borgmatic.timer.d/override.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: [daemon-reload]
+  tags: [backup_borg]
+
+- name: Deploy weekly check service
+  template:
+    src: borgmatic-check.service.j2
+    dest: /etc/systemd/system/borgmatic-check.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify: [daemon-reload]
+  tags: [backup_borg]
+
+- name: Deploy weekly check timer
+  template:
+    src: borgmatic-check.timer.j2
+    dest: /etc/systemd/system/borgmatic-check.timer
+    owner: root
+    group: root
+    mode: "0644"
+  notify: [daemon-reload]
+  tags: [backup_borg]
+
+- name: Enable and start timers
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop:
+    - borgmatic.timer
+    - borgmatic-check.timer
+  tags: [backup_borg]
+
+- name: Install manual backup script
+  template:
+    src: docker-borg-backup.sh.j2
+    dest: /usr/local/sbin/docker-borg-backup.sh
+    owner: root
+    group: root
+    mode: "0755"
+  tags: [backup_borg]
+

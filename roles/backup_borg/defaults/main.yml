@@ -1,0 +1,32 @@
+---
+# Borg backup role defaults
+borg_source_paths:
+  - /media/docker
+borg_repo_path: /tank/backups/docker/borg
+
+# Encryption: set to true to use borg 'repokey', false for no encryption
+borg_use_encryption: false
+# Only used if borg_use_encryption is true. Store in Ansible Vault ideally.
+borg_repo_passphrase: ""
+
+# Retention
+borg_keep_daily: 7
+borg_keep_weekly: 4
+
+# Exclusions
+borg_excludes:
+  - "**/cache/"
+  - "**/Cache/"
+  - "**/tmp/"
+  - "**/*.lock"
+  - "**/*.pid"
+
+# Scheduling
+borg_daily_time: "02:30:00"            # HH:MM:SS for daily timer
+borg_weekly_check_calendar: "Sun 04:00:00"  # systemd OnCalendar for weekly check
+
+# Behavior
+borg_stop_all_containers: true
+
+# Healthchecks (optional)
+borg_healthchecks_url: ""

@@ -1,0 +1,10 @@
+# Managed by Ansible - run weekly borgmatic check
+[Unit]
+Description=Run weekly borgmatic check
+
+[Timer]
+OnCalendar={{ borg_weekly_check_calendar }}
+Persistent=true
+
+[Install]
+WantedBy=timers.target

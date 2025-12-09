@@ -1,0 +1,46 @@
+# Managed by Ansible - borgmatic configuration
+location:
+  source_directories:
+{% for p in borg_source_paths %}
+    - {{ p }}
+{% endfor %}
+  repositories:
+    - {{ borg_repo_path }}
+{% if borg_excludes and borg_excludes | length > 0 %}
+  exclude_patterns:
+{% for pat in borg_excludes %}
+    - "{{ pat }}"
+{% endfor %}
+{% endif %}
+
+storage:
+{% if borg_use_encryption %}
+  encryption_passphrase: "{{ borg_repo_passphrase }}"
+{% endif %}
+  compression: zstd,6
+
+retention:
+  keep_daily: {{ borg_keep_daily }}
+  keep_weekly: {{ borg_keep_weekly }}
+
+consistency:
+  checks:
+    - repository
+    - archives
+  check_last: 4
+
+hooks:
+  before_backup:
+{% if borg_stop_all_containers %}
+    - "bash -lc 'docker ps -q | xargs -r docker stop'"
+{% endif %}
+  after_backup:
+{% if borg_stop_all_containers %}
+    - "bash -lc 'docker ps -aq | xargs -r docker start'"
+{% endif %}
+{% if borg_healthchecks_url | length > 0 %}
+  on_success:
+    - "bash -lc 'curl -fsS -m 10 --retry 5 -o /dev/null {{ borg_healthchecks_url }}/success'"
+  on_error:
+    - "bash -lc 'curl -fsS -m 10 --retry 5 -o /dev/null {{ borg_healthchecks_url }}/fail'"
+{% endif %}
