@@ -18,7 +18,7 @@
 
 - name: Link local time
   file:
-    src: "/usr/share/zoneinfo/US/East-Indiana"
+    src: "/usr/share/zoneinfo/America/Indiana/Indianapolis"
     dest: "/etc/localtime"
     state: link
   become: yes

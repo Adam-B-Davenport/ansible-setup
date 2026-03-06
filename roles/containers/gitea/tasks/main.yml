@@ -2,7 +2,7 @@
 - name: Create gitea_network
   docker_network:
     name: gitea_network
-    
+
 - name: Make sure the "{{ container_name }}_db" container is created and running
   docker_container:
     name: "{{ container_name }}_db"
@@ -43,6 +43,9 @@
     image: docker.gitea.com/gitea:1.25.1
     pull: yes
     privileged: yes
+    # This command makes Gitea wait for the DB port before launching the web server.
+    # It prevents the 100% CPU loop after a host reboot.
+    command: ["/bin/sh", "-c", "until nc -z {{ container_name }}_db 5432; do sleep 3; done; su-exec git /usr/bin/entrypoint /usr/local/bin/gitea web"]
     labels:
       "flame.type": "application"
       "flame.name": "gitea"
@@ -57,7 +60,8 @@
       "VIRTUAL_HOST": "gitea.home"
       "VIRTUAL_PORT": "3000"
       "GITEA__database__DB_TYPE": "postgres"
-      "GITEA__database__HOST": "gitea_db:5432"
+      # Fixed this to point to your specific DB container name
+      "GITEA__database__HOST": "{{ container_name }}_db:5432"
       "GITEA__database__NAME": "gitea"
       "GITEA__database__USER": "gitea"
       "GITEA__database__PASSWD": "{{ gitea_db_password }}"
