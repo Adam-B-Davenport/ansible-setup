@@ -1,4 +1,12 @@
 ---
+- name: Ensure syncthing directory exists and has correct permissions
+  file:
+    path: "{{ docker_dir }}/{{ container_name }}"
+    state: directory
+    owner: "{{ guid }}"
+    group: "{{ guid }}"
+    recurse: yes
+
 - name: Make sure the {{ container_name }} container is created and running
   docker_container:
     name: "{{ container_name }}"
@@ -9,7 +17,7 @@
       "flame.name": "{{ container_name }}"
       "flame.url": "{{ dashboard_url }}"
       "flame.icon": "custom"
-    state: "started"
+    state: "stopped"
     env:
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"

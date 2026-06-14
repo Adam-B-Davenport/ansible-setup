@@ -10,6 +10,7 @@
       # Change this to your host's public address
       WG_HOST: "{{ wireguard_host }}"
       PASSWORD: "{{ wireguard_password }}"
+      WG_DEFAULT_ADDRESS: 10.32.0.x
 
       # Optional:
       # - PASSWORD=foobar123
