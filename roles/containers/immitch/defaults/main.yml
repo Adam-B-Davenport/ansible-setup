@@ -1,6 +1,0 @@
----
-container_name: mumble
-
-dashboard_url: "http://mumble.home"
-
-homer_category: media

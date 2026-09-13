@@ -1,0 +1,6 @@
+---
+container_name: immich
+
+dashboard_url: "http://immich.home"
+
+homer_category: media
