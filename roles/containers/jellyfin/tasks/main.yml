@@ -33,6 +33,7 @@
       - "/tank/Movies:/data/Movies2"
       - "/tank/Exercise:/data/Exercise"
       - "/tank/RPG:/data/RPG"
+      - "/tank/youtube:/data/youtube"
     restart_policy: always
     ports:
       - 8096:8096

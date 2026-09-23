@@ -4,7 +4,7 @@
     name: "{{ container_name }}"
     image: "ghcr.io/kieraneglin/pinchflat:latest"
     pull: yes
-    privileged: no
+    privileged: yes
     labels:
       "flame.type": "application"
       "flame.name": "Pinchflat"
